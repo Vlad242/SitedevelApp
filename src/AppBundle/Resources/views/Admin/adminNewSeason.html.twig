@@ -1,0 +1,53 @@
+{% extends '@App/base.html.twig' %}
+
+{% block body %}
+    <div class="row pd-10">
+        <div class="container">
+            <h3>Додавання нового сезону:</h3>
+            <hr>
+            {{ form_start(form) }}
+            <div class="form_errors">
+                {{ form_errors(form) }}
+            </div>
+            <div class="row pd-10">
+                <div class="col-md-2">
+                    {{ form_label(form.name)}}
+                </div>
+                <div class="col-md-10">
+                    {{ form_widget(form.name) }}
+                </div>
+            </div>
+            <div class="row pd-10">
+                <div class="col-md-2">
+                    {{ form_label(form.description)}}
+                </div>
+                <div class="col-md-10">
+                    {{ form_widget(form.description) }}
+                </div>
+            </div>
+            <div class="row pd-10">
+                <div class="col-md-2">
+                    {{ form_label(form.startDate)}}
+                </div>
+                <div class="col-md-10">
+                    {{ form_widget(form.startDate) }}
+                </div>
+            </div>
+            <div class="row pd-10">
+                <div class="col-md-2">
+                    {{ form_label(form.endDate)}}
+                </div>
+                <div class="col-md-10">
+                    {{ form_widget(form.endDate) }}
+                </div>
+            </div>
+            <hr>
+            <div class="row pd-10">
+                <div class="col-md-1">
+                    {{ form_widget(form.submit) }}
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

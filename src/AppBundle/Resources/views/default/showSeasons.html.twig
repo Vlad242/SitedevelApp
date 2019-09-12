@@ -1,0 +1,74 @@
+{% extends '@App/base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <h3>Список сезонів серіалу {{ serial }}:</h3>
+                    </div>
+                    <div class="col-md-3 text-right">
+                        <a class="btn btn-success" href="{{ path('show_serials') }}">Назад</a>
+                    </div>
+                </div>
+                <div class="accordion pg_up">
+                    {% for season in seasons %}
+                        <div class="accordion">
+                            <div class="card border-success mb-3">
+                                <div class="card-header" id="headingS{{ season.id }}">
+                                    <div class="row">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapse_header" type="button" data-toggle="collapse" data-target="#collapseS{{ season.id }}" aria-expanded="true" aria-controls="collapseS{{ season.id }}">
+                                                <b>{{ season.name }}</b><br>
+                                            </button>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div id="collapseS{{ season.id }}" class="collapse" aria-labelledby="headingS{{ season.id }}">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="container">
+                                                <p>{{ season.description }}</p>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <b>Реліз:  <small>{{ season.startDate|date('Y:m:d') }}</small></b>
+                                                    </div>
+                                                    <div class="col-md-6 date_end">
+                                                        <b>Кінець:  <small>{{ season.endDate|date('Y:m:d') }}</small></b>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            {% if season.episodes.count != 0 %}
+                                                {% set ep_counter = 1 %}
+                                                {% for episode in season.episodes %}
+                                                    <div class="col-md-4">
+                                                        <div class="card mb-4 box-shadow">
+                                                            <img class="card-img-top" src="{{ asset('uploads/files/' ~ episode.imagePath) }}" alt="{{ episode.name }}">
+                                                            <div class="card-body">
+                                                                <h5><b>{{ episode.name }}</b></h5>
+                                                                <div class="btn-group">
+                                                                    <a class="btn btn-sm btn-outline-secondary" href="{{ path('show_episode_detail', {'episode': episode.id}) }}">Докладніше про серію...</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {% set ep_counter= ep_counter + 1 %}
+                                                {% endfor %}
+                                            {% else %}
+                                                <p>Дані серій відсутні...</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

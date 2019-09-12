@@ -1,0 +1,107 @@
+{% extends '@App/base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row pg_up">
+            <div class="col-md-9">
+                <h3>Перелік серіалів в фільмотеці:</h3>
+            </div>
+            <div class="col-md-3 text-right">
+                <a class="btn btn-primary" href="{{ path('show_serials') }}">Назад</a>
+            </div>
+        </div>
+        <hr>
+        {% for serial in serials %}
+            <div class="accordion pg_up">
+                <div class="card">
+                    <div class="card-header" id="heading{{ serial.id }}">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapse_header" type="button" data-toggle="collapse" data-target="#collapse{{ serial.id }}" aria-expanded="true" aria-controls="collapse{{ serial.id }}">
+                                        <b>{{ serial.name }}</b><br>
+                                    </button>
+                                </h5>
+                            </div>
+                            <div class="col-md-3 text-right">
+                                <a class="btn btn-success" href="{{ path('new_season', {'serial': serial.id}) }}">Додати сезон</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="collapse{{ serial.id }}" class="collapse" aria-labelledby="heading{{ serial.id }}">
+                        <div class="card-body text-primary">
+                            {% if serial.seasons.count != 0 %}
+                                {% set ses_counter = 1 %}
+                                {% for season in serial.seasons %}
+                                    <div class="accordion">
+                                        <div class="card border-success mb-3">
+                                            <div class="card-header" id="headingS{{ season.id }}">
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <h5 class="mb-0">
+                                                            <button class="btn btn-link collapse_header" type="button" data-toggle="collapse" data-target="#collapseS{{ season.id }}" aria-expanded="true" aria-controls="collapseS{{ season.id }}">
+                                                               {{ ses_counter }}) <b>{{ season.name }}</b><br>
+                                                            </button>
+                                                        </h5>
+                                                    </div>
+                                                    <div class="col-md-3 text-right">
+                                                        <a class="btn btn-success" href="{{ path('new_episode', {'season': season.id}) }}">Додати серію</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="collapseS{{ season.id }}" class="collapse" aria-labelledby="headingS{{ season.id }}">
+                                                <div class="card-body text-success">
+                                                    {% if season.episodes.count != 0 %}
+                                                        {% set ep_counter = 1 %}
+                                                        {% for episode in season.episodes %}
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    {{ ep_counter }}) {{ episode.name }}
+                                                                </div>
+                                                            </div>
+                                                            <hr>
+                                                            {% set ep_counter= ep_counter + 1 %}
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        <p>Дані серій відсутні...</p>
+                                                    {% endif %}
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% set ses_counter= ses_counter + 1 %}
+                                {% endfor %}
+                            {% else %}
+                                <p>Дані сезонів відсутні...</p>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <br>
+        <hr>
+        <div class="row">
+            <div class="col-md-8 mg-10">
+                <h5>Додати новий серіл</h5>
+            </div>
+            <div class="col-md-3 text-right">
+                <a class="btn btn-success" href="{{ path('new_serial') }}">Додати</a>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+{% endblock %}

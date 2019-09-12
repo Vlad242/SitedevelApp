@@ -1,0 +1,63 @@
+{% extends '@App/base.html.twig' %}
+
+{% block body %}
+    <div class="row pd-10">
+        <div class="container">
+            <h3>Додавання нового епізоду(серії):</h3>
+            <hr>
+            {{ form_start(form) }}
+            <div class="form_errors">
+                {{ form_errors(form) }}
+            </div>
+            <div class="row pd-10">
+                <div class="col-md-2">
+                    {{ form_label(form.name)}}
+                </div>
+                <div class="col-md-10">
+                    {{ form_widget(form.name) }}
+                </div>
+            </div>
+            <div class="row pd-10">
+                <div class="col-md-2">
+                    {{ form_label(form.duration)}}
+                </div>
+                <div class="col-md-10">
+                    {{ form_widget(form.duration) }}
+                </div>
+            </div>
+            <div class="row pd-10">
+                <div class="col-md-2">
+                    {{ form_label(form.producer)}}
+                </div>
+                <div class="col-md-10">
+                    {{ form_widget(form.producer) }}
+                </div>
+            </div>
+            <div class="row pd-10">
+                <div class="col-md-2">
+                    {{ form_label(form.distributor)}}
+                </div>
+                <div class="col-md-10">
+                    {{ form_widget(form.distributor) }}
+                </div>
+            </div>
+            <div class="row pd-10">
+                <div class="col-md-10">
+                    {{ form_label(form.imagePath)}}
+                </div>
+            </div>
+            <div class="row pd-10">
+                <div class="col-md-10">
+                    {{ form_widget(form.imagePath) }}
+                </div>
+            </div>
+            <hr>
+            <div class="row pd-10">
+                <div class="col-md-1">
+                    {{ form_widget(form.submit) }}
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

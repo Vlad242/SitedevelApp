@@ -1,0 +1,31 @@
+{% extends '@App/base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row pg_up">
+            <div class="col-md-12">
+                {% set referer = app.request.server.get('http-referer')|default('/') %}
+                <a class="btn btn-primary" href="{{ referer }}">Назад</a>
+            </div>
+        </div>
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <div class="col-md-6 centered">
+                    <div class="card mb-4 box-shadow">
+                        <img class="card-img-top" src="{{ asset('uploads/files/' ~ episode.imagePath) }}" alt="{{ episode.name }}">
+                        <div class="card-body">
+                            <h5><b>{{ episode.name }}</b></h5>
+
+                            <hr>
+                            <p class="card-text">
+                                Продюсер: {{ episode.getProducer() }}<br>
+                                Дистрибютор: {{ episode.getDistributor() }}<br>
+                                Тривалість: {{ episode.getDuration() }} хв.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
