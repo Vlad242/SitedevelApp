@@ -1,0 +1,17 @@
+.pd-10{
+  padding-bottom: 10px;
+}
+.pg_up{
+  padding-top: 20px;
+}
+.mg-10{
+  margin-left: 10px;
+}
+.date_end{
+  text-align: end;
+}
+.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}

@@ -52,7 +52,7 @@ class Episode
     /**
      * @var string
      *
-     * @ORM\Column(name="Image_path", type="text", nullable=true)
+     * @ORM\Column(name="Image_path", type="string", nullable=true)
      */
     private $imagePath;
 
@@ -169,23 +169,15 @@ class Episode
     }
 
     /**
-     * Set imagePath
-     *
      * @param string $imagePath
-     *
-     * @return Episode
      */
     public function setImagePath($imagePath)
     {
         $this->imagePath = $imagePath;
-
-        return $this;
     }
 
     /**
-     * Get imagePath
-     *
-     * @return string
+     * @return mixed
      */
     public function getImagePath()
     {

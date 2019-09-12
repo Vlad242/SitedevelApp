@@ -54,9 +54,9 @@ class Serial
     /**
      * @var string
      *
-     * @ORM\Column(name="Image_path", type="text", nullable=true)
+     * @ORM\Column(name="Image_path", type="string", nullable=true)
      */
-    private $ImagePath;
+    private $imagePath;
 
     /**
      * @var Season[]| Collection
@@ -158,23 +158,19 @@ class Serial
     }
 
     /**
-     * @param string $ImagePath
-     *
-     * @return Serial
+     * @param mixed $ImagePath
      */
     public function setImagePath($ImagePath)
     {
-        $this->ImagePath = $ImagePath;
-
-        return $this;
+        $this->imagePath = $ImagePath;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
     public function getImagePath()
     {
-        return $this->ImagePath;
+        return $this->imagePath;
     }
 
     /**
